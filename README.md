@@ -1,11 +1,37 @@
 <p align="center">
   <a href="https://wvm.dev">
-    <img src="https://raw.githubusercontent.com/weaveVM/.github/main/profile/bg.png">
+    <img src="./media/banner.png">
   </a>
 </p>
 
 ## About
 WeaveVM Archiver is an ETL archive pipeline for EVM networks. It's the simplest way to interface with WeaveVM's permanent data feature without smart contract redeployments.
+
+## About RSS3 Network
+The [RSS3 Network](https://rss3.io) is a decentralized network designed to promote the free flow of information on the Open Web .
+
+## rss3-wvm-archiver node configuration
+
+- node endpoint: https://rss3-wvm-archiver.shuttleapp.rs
+- wvm-archiver node version: [v0.1.2](https://github.com/weaveVM/wvm-archiver/releases/tag/v0.1.2)
+
+### Node configuration
+
+```json
+{
+    "name": "RSS3 VSL Mainnet",
+    "network_chain_id": 12553,
+    "wvm_chain_id": 9496,
+    "network_rpc": "https://rpc.rss3.io",
+    "wvm_rpc": "https://testnet-rpc.wvm.dev",
+    "block_time": 2,
+    "start_block": 6888111,
+    "archiver_address": "0xA6dC883ea2A6acb576A933B4d38D13d6069d9fBE",
+    "archive_pool_address": "0x0000000000000000000000000000000000000000"
+}
+```
+
+# Generic documentation content from [wvm-archiver](https://github.com/weaveVM/wvm-archiver) repo
 
 ### WeaveVM Archiver Usage
 
@@ -19,7 +45,7 @@ WeaveVM Archiver is the ideal choice if you want to:
 ## Build & Run
 
 ```bash
-git clone https://github.com/weaveVM/wvm-archiver.git
+git clone https://github.com/weaveVM/rss3-wvm-archiver.git
 
 cd wvm-archiver
 
