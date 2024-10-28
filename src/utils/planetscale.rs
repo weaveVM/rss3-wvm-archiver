@@ -23,7 +23,7 @@ pub async fn ps_archive_block(
     let conn = ps_init().await;
 
     let res = query(
-        "INSERT INTO WeaveVMArchiverMetis(NetworkBlockId, WeaveVMArchiveTxid) VALUES($0, \"$1\")",
+        "INSERT INTO WeaveVMArchiverRss3(NetworkBlockId, WeaveVMArchiveTxid) VALUES($0, \"$1\")",
     )
     .bind(network_block_id)
     .bind(wvm_calldata_txid)
@@ -47,7 +47,7 @@ pub async fn ps_get_latest_block_id() -> u64 {
     let conn = ps_init().await;
 
     let latest_archived: u64 =
-        query("SELECT MAX(NetworkBlockId) AS LatestNetworkBlockId FROM WeaveVMArchiverMetis;")
+        query("SELECT MAX(NetworkBlockId) AS LatestNetworkBlockId FROM WeaveVMArchiverRss3;")
             .fetch_scalar(&conn)
             .await
             .unwrap_or(network.start_block);
@@ -60,7 +60,7 @@ pub async fn ps_get_archived_block_txid(id: u64) -> Value {
     let conn = ps_init().await;
 
     let query_formatted = format!(
-        "SELECT WeaveVMArchiveTxid FROM WeaveVMArchiverMetis WHERE NetworkBlockId = {}",
+        "SELECT WeaveVMArchiveTxid FROM WeaveVMArchiverRss3 WHERE NetworkBlockId = {}",
         id
     );
     let txid: PsGetBlockTxid = query(&query_formatted).fetch_one(&conn).await.unwrap();
@@ -79,7 +79,7 @@ pub async fn ps_get_blocks_extremes(extreme: &str) -> Value {
     };
 
     let query_formatted = format!(
-        "SELECT NetworkBlockId FROM WeaveVMArchiverMetis ORDER BY NetworkBlockId {} LIMIT 1;",
+        "SELECT NetworkBlockId FROM WeaveVMArchiverRss3 ORDER BY NetworkBlockId {} LIMIT 1;",
         query_type
     );
 
@@ -92,7 +92,7 @@ pub async fn ps_get_blocks_extremes(extreme: &str) -> Value {
 pub async fn ps_get_archived_blocks_count() -> PsGetTotalBlocksCount {
     let conn = ps_init().await;
 
-    let query_formatted = "SELECT MAX(Id) FROM WeaveVMArchiverMetis;";
+    let query_formatted = "SELECT MAX(Id) FROM WeaveVMArchiverRss3;";
     let count: PsGetTotalBlocksCount = query(&query_formatted).fetch_one(&conn).await.unwrap();
     count
 }

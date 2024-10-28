@@ -1,4 +1,4 @@
-name = "wvm-archiver"
+name = "rss3-wvm-archiver"
 
 assets = [
     ".env"
