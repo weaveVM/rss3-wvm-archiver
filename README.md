@@ -102,12 +102,12 @@ The WeaveVM Archiver node operates as follows:
 
 As mentioned, PlanetScale is used for cloud indexing, which allows a WeaveVM Archiver node to expose its WeaveVM data as a RESTful API.
 
-#### Node instance endpoint: https://metis.wvm.network
+#### Node instance endpoint: https://rss3.wvm.network
 
 ### WeaveVM Archiver node instance info
 
 ```bash
-curl -X GET https://the_network.wvm.network/v1/info
+curl -X GET https://rss3.wvm.network/v1/info
 ```
 **returns:**
 
@@ -133,7 +133,7 @@ pub struct InfoServerResponse {
 ### WeaveVM Archiver all networks info:
 
 ```bash
-curl -X GET https://the_network.wvm.network/v1/all-networks-info
+curl -X GET https://rss3.wvm.network/v1/all-networks-info
 ```
 
 **returns:**
@@ -145,13 +145,13 @@ Vec<Network>
 ### Retrieve the WVM archive TXID for a given EVM block ID
 
 ```bash
-curl -X GET https://the_network.wvm.network/v1/block/$BLOCK_ID
+curl -X GET https://rss3.wvm.network/v1/block/$BLOCK_ID
 ```
 
 ### Decode the WVM archived block data for a given EVM block ID (return original block data in JSON format)
 
 ```bash
-curl -X GET https://the_network.wvm.network/v1/block/raw/$BLOCK_ID
+curl -X GET https://rss3.wvm.network/v1/block/raw/$BLOCK_ID
 ```
 
 ## License
