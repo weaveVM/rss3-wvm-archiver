@@ -1,5 +1,2 @@
-name = "rss3-wvm-archiver"
-
-assets = [
-    ".env"
-]
+[build]
+assets = ["networks/*"]
