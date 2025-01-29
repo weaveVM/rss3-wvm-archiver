@@ -1,12 +1,10 @@
-use {
-    crate::utils::{
-        env_var::get_env_var,
-        schema::{Network, PsGetBlockTxid, PsGetExtremeBlock, PsGetTotalBlocksCount},
-    },
-    anyhow::Error,
-    planetscale_driver::{query, PSConnection},
-    serde_json::Value,
+use crate::utils::{
+    env_var::get_env_var,
+    schema::{Network, PsGetBlockTxid, PsGetExtremeBlock, PsGetTotalBlocksCount},
 };
+use anyhow::Error;
+use planetscale_driver::{query, PSConnection};
+use serde_json::Value;
 
 async fn ps_init() -> PSConnection {
     let host = get_env_var("DATABASE_HOST").unwrap();
@@ -41,18 +39,10 @@ pub async fn ps_archive_block(
         .bind(network_block_id)
         .bind(wvm_calldata_txid)
         .execute(&conn)
-        .await;
+        .await?;
 
-    match res {
-        Ok(result) => {
-            println!("Insert operation was successful: {:?}", result);
-            Ok(result)
-        }
-        Err(e) => {
-            println!("Error occurred during insert operation: {:?}", e);
-            Err(e)
-        }
-    }
+    println!("Insert operation was successful: {:?}", res);
+    Ok(res)
 }
 
 pub async fn ps_get_latest_block_id(is_backfill: bool) -> u64 {
